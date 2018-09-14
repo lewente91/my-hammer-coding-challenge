@@ -6,6 +6,6 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-###> other ###
+###> IDE ###
 .idea
-###< other ###
+###< IDE ###

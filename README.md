@@ -1,2 +1,2 @@
-# MyHammer Coding Challenge - Job service
+# MyHammer Coding Challenge Service
 ## Table of contents
