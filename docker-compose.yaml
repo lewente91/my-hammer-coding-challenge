@@ -1,0 +1,42 @@
+version: '3'
+services:
+    web:
+        build: ./docker/nginx
+        container_name: ${APP_NAME}_web
+        ports:
+        - "80:80"
+        depends_on:
+        - php
+        - db
+        volumes:
+        - ./:/var/www/${APP_NAME}
+        networks:
+        - my_hammer_api_network
+
+    php:
+        build: ./docker/php
+        container_name: ${APP_NAME}_php
+        volumes:
+        - ./:/var/www/${APP_NAME}
+        networks:
+        - my_hammer_api_network
+
+    db:
+        build: ./docker/mysql
+        container_name: ${APP_NAME}_db
+        command: --sql_mode=""
+        ports:
+        - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: wkHLpc7SGVgLHztyFxM6MkSJB82993Z6
+            MYSQL_DATABASE: in_stock_api
+        volumes:
+        - vol-db:/var/lib/mysql
+        networks:
+        - my_hammer_api_network
+
+volumes:
+    vol-db:
+
+networks:
+    my_hammer_api_network:
