@@ -7,7 +7,7 @@ DC = docker-compose
 CONFIG = docker-compose.yaml
 REPORTS_DIR = reports
 
-.PHONY: help up up-build vendor stop prune prune-volume ps
+.PHONY: help up up-build vendor stop prune prune-volume ps migrate seed
 
 help: ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
@@ -34,3 +34,9 @@ prune-volume: ## Stop and remove project specific containers and volumes
 
 ps: ## List project specific containers
 	@${D} ps -f name=${APP_NAME} --format "table {{.ID}}\t{{.Names}}\t{{.Ports}}\t{{.RunningFor}}\t{{.Status}}"; \
+
+migrate: ## Run database migrations
+	@${D} exec ${APP_NAME}_php php bin/console doctrine:migrations:migrate -q; \
+
+seed: ## Create test data
+	@${D} exec ${APP_NAME}_php php bin/console doctrine:fixtures:load -q; \
