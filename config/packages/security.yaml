@@ -1,0 +1,17 @@
+security:
+    providers:
+        api_user_provider:
+            id: MyHammer\Api\Security\ApiUserProvider
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern: ^/
+            stateless: true
+            simple_preauth:
+                authenticator: MyHammer\Api\Security\ApiAuthenticator
+            provider: api_user_provider
+
+    access_control:
+         - { path: ^/, roles: ROLE_USER }

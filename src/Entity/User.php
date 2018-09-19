@@ -3,6 +3,7 @@
 namespace MyHammer\Api\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class User
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Table(name="users")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -20,14 +21,14 @@ class User
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id", type="integer", options={"unsigned": true})
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="username", unique=true, type="string")
      */
-    private $username;
+    protected $username;
 
     /**
      * @return int
@@ -65,5 +66,38 @@ class User
         $this->username = $username;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRoles()
+    {
+        return [
+            'ROLE_USER'
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPassword()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function eraseCredentials()
+    {
     }
 }

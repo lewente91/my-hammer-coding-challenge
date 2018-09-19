@@ -20,14 +20,14 @@ class Service
      * @ORM\GeneratedValue()
      * @ORM\Column(name="id", type="integer", options={"unsigned": true})
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", unique=true, type="string")
      */
-    private $name;
+    protected $name;
 
     /**
      * @return int

@@ -1,0 +1,24 @@
+parameters:
+    exception_map:
+        basic_exception_map:
+            AccessDeniedHttpException: Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+            BadRequestHttpException: Symfony\Component\HttpKernel\Exception\BadRequestHttpException
+            ConflictHttpException: Symfony\Component\HttpKernel\Exception\ConflictHttpException
+            GoneHttpException: Symfony\Component\HttpKernel\Exception\GoneHttpException
+            LengthRequiredHttpException: Symfony\Component\HttpKernel\Exception\LengthRequiredHttpException
+            MethodNotAllowedHttpException: Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
+            NotAcceptableHttpException: Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException
+            NotFoundHttpException: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+            PreconditionFailedHttpException: Symfony\Component\HttpKernel\Exception\PreconditionFailedHttpException
+            PreconditionRequiredHttpException: Symfony\Component\HttpKernel\Exception\PreconditionRequiredHttpException
+            RuntimeException: \RuntimeException
+            ServiceUnavailableHttpException: Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException
+            TooManyRequestsHttpException: Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException
+            UnauthorizedHttpException: Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
+            UnprocessableEntityHttpException: Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException
+            UnsupportedMediaTypeHttpException: Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException
+
+        my_hammer_api_exception_map:
+            InvalidArgumentException: RuntimeException
+            MyHammer\Api\Exception\EntityNotFoundException: NotFoundHttpException
+            MyHammer\Api\Exception\ConstraintViolationException: BadRequestHttpException

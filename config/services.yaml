@@ -1,3 +1,9 @@
+parameters:
+    locale: 'en'
+
+imports:
+- { resource: 'exception_map.yaml' }
+
 services:
     _defaults:
         autowire: true
@@ -11,3 +17,11 @@ services:
     MyHammer\Api\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    MyHammer\Api\Service\ExceptionTransformerService:
+        arguments:
+            $exceptionMap: '%exception_map%'
+
+    MyHammer\Api\EventSubscriber\ExceptionSubscriber:
+        arguments:
+            $environment: '%kernel.environment%'
