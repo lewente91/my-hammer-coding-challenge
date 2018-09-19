@@ -3,6 +3,7 @@
 namespace MyHammer\Api\Controller;
 
 use MyHammer\Api\Service\ScheduleServiceInterface;
+use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +37,24 @@ class ScheduleController extends AbstractController
      * @return JsonResponse
      *
      * @Route("/schedule", name="schedule_list", methods={"GET"})
+     *
+     * @SWG\Get(
+     *     path="/schedule",
+     *     tags={"schedule"},
+     *     description="Get all schedules",
+     *     responses={
+     *          @SWG\Response(
+     *              response=200,
+     *              description="List of schedules",
+     *              @SWG\Schema(
+     *                  type="array",
+     *                  @SWG\Items(
+     *                      type="string"
+     *                  )
+     *              )
+     *          )
+     *      }
+     * )
      */
     public function all(): JsonResponse
     {

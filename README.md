@@ -41,6 +41,9 @@ under `src\DataFixtures` directory.
 
 User authentication is achieved with a dummy pre authenticator, which fetches a given user from the database.
 
+In `dev` environment access `/api/doc` for an API Documentation. In case the containers are running, this api doc
+can be also used to make requests.
+
 ## Setup
 ```bash
 # clone the project

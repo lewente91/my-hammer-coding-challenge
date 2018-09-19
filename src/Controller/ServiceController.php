@@ -3,6 +3,8 @@
 namespace MyHammer\Api\Controller;
 
 use MyHammer\Api\Service\ServiceServiceInterface;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +38,19 @@ class ServiceController extends AbstractController
      * @return JsonResponse
      *
      * @Route("/service", name="service_list", methods={"GET"})
+     *
+     * @SWG\Get(
+     *     path="/service",
+     *     tags={"service"},
+     *     description="Get all services",
+     *     responses={
+     *          @SWG\Response(
+     *              response=200,
+     *              description="List of services",
+     *              @Model(type=MyHammer\Api\Entity\Service::class)
+     *          )
+     *      }
+     * )
      */
     public function all(): JsonResponse
     {

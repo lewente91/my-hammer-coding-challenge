@@ -30,6 +30,9 @@ class User implements UserInterface
      */
     protected $username;
 
+    /** @var string[] */
+    protected $roles = ['ROLE_USER'];
+
     /**
      * @return int
      */
@@ -73,9 +76,7 @@ class User implements UserInterface
      */
     public function getRoles()
     {
-        return [
-            'ROLE_USER'
-        ];
+        return $this->roles;
     }
 
     /**
