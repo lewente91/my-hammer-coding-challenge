@@ -19,14 +19,14 @@ class City
      * @ORM\Id()
      * @ORM\Column(name="zip", type="string")
      */
-    private $zip;
+    protected $zip;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string")
      */
-    private $name;
+    protected $name;
 
     /**
      * @return string

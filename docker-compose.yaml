@@ -29,7 +29,7 @@ services:
         - "3306:3306"
         environment:
             MYSQL_ROOT_PASSWORD: wkHLpc7SGVgLHztyFxM6MkSJB82993Z6
-            MYSQL_DATABASE: in_stock_api
+            MYSQL_DATABASE: my_hammer_api
         volumes:
         - vol-db:/var/lib/mysql
         networks:
