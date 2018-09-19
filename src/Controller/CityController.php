@@ -3,6 +3,8 @@
 namespace MyHammer\Api\Controller;
 
 use MyHammer\Api\Service\CityServiceInterface;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,6 +38,19 @@ class CityController extends AbstractController
      * @return JsonResponse
      *
      * @Route("/city", name="city_list", methods={"GET"})
+     *
+     * @SWG\Get(
+     *     path="/city",
+     *     tags={"city"},
+     *     description="Get all cities",
+     *     responses={
+     *          @SWG\Response(
+     *              response=200,
+     *              description="List of cities",
+     *              @Model(type=MyHammer\Api\Entity\City::class)
+     *          )
+     *      }
+     * )
      */
     public function all(): JsonResponse
     {

@@ -4,6 +4,8 @@ namespace MyHammer\Api\Controller;
 
 use MyHammer\Api\Entity\Job;
 use MyHammer\Api\Service\JobServiceInterface;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -39,6 +41,87 @@ class JobController extends AbstractController
      * @return Response
      *
      * @Route("/job", name="job_create", methods={"POST"})
+     *
+     * @SWG\Post(
+     *     path="/job",
+     *     tags={"job"},
+     *     consumes={"application/json"},
+     *     description="Create a new job with the given parameters",
+     *     parameters={
+     *          @SWG\Parameter(
+     *              name="job",
+     *              in="body",
+     *              required=true,
+     *              @SWG\Schema(
+     *                  type="object",
+     *                  @SWG\Property(
+     *                      property="title",
+     *                      type="string",
+     *                      description="Job title"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="description",
+     *                      type="string",
+     *                      description="Job description, >= 5 and <= 50 characters"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="zip",
+     *                      type="string",
+     *                      description="ZipCode of the city where the job is taking place @see GET /cities"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="schedule",
+     *                      type="string",
+     *                      description="Schedule type @see GET /schedule"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="service",
+     *                      type="integer",
+     *                      description="ID of the service the job will belong to @see GET /service"
+     *                  )
+     *              )
+     *          )
+     *     },
+     *     responses={
+     *          @SWG\Response(
+     *              response=201,
+     *              description="Job was successfully created",
+     *              @SWG\Schema(
+     *                  type="object",
+     *                  @SWG\Property(
+     *                      property="id",
+     *                      type="integer",
+     *                      description="Job ID"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="title",
+     *                      type="string",
+     *                      description="Job title"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="description",
+     *                      type="string",
+     *                      description="Job description, >= 5 and <= 50 characters"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="zip",
+     *                      type="string",
+     *                      description="ZipCode of the city where the job is taking place @see GET /cities"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="schedule",
+     *                      type="string",
+     *                      description="Schedule type @see GET /schedule"
+     *                  ),
+     *                  @SWG\Property(
+     *                      property="service",
+     *                      type="integer",
+     *                      description="ID of the service the job will belong to @see GET /service"
+     *                  )
+     *              )
+     *          )
+     *      }
+     * )
      */
     public function create(Request $request): Response
     {
