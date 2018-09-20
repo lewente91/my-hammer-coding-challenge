@@ -63,6 +63,26 @@ make seed
 ```
 
 ## Tests
+Test too are contained with docker. Works the same as all the other containers in regard of `APP_NAME`, `.env` file and
+`-p` docker flag.
+
+A single container under the name of `<APP_NAME>_test` is created with `composer` and `xdebug`.
+The included `Makefile` facilitates the following commands regarding testing:
+- `test-build`: Build and start test container, create report directories
+- `test-build-vendor`: Composer install in the test container
+- `test-phpunit`: Run PHPUnit tests
+- `test-prune`: Remove test container
+
+Running `make test-phpunit` creates the following logs in the `reports/coverage` directory:
+- `html`: for bette visualisation of the coverage report (open with `index.html`)
+- `clover.xml`: clover coverage in xml format
+- `crap4j.xml`: CRAP (Change Risk Analysis and Predictions) software metric in xml format
 
 ## Future plans
+- add more `unit tests`
+- add other metrics to the project `phpstan`, `phpcs`, `phpmd`
 - change `MyHammer\Api\EventSubscriber\ExceptionSubscriber` to use strategy pattern based on the exception thrown
+- improve `Makefile` (add migration generation, etc.)
+- change `Schedule` from `ENUM` to an entity in order to make management development free
+- add `behavioural tests (Behat)` (this is why controllers are excluded in phpunit.xml)
+- cleanup configuration (improve, remove unused ones)

@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /.env
 /public/bundles/
@@ -9,3 +8,8 @@
 ###> IDE ###
 .idea
 ###< IDE ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+/reports
+###< phpunit/phpunit ###
